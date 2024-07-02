@@ -4,11 +4,11 @@ public class Book {
 
     private String name;
 
-    private Person borrowedBy;
+    private Person person;
 
-    public Book(String name, Person borrowedBy) {
+    public Book(String name, Person person) {
         this.name = name;
-        this.borrowedBy = borrowedBy;
+        this.person = person;
     }
 
     public String getName() {
@@ -19,19 +19,19 @@ public class Book {
         this.name = name;
     }
 
-    public Person getBorrowedBy() {
-        return borrowedBy;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setBorrowedBy(Person borrowedBy) {
-        this.borrowedBy = borrowedBy;
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
     public String toString() {
         return "Book{" +
                 "name='" + name + '\'' +
-                ", borrowedBy=" + borrowedBy +
+                ", person=" + person +
                 '}';
     }
 
@@ -41,13 +41,13 @@ public class Book {
         if (o == null || getClass() != o.getClass()) return false;
 
         Book book = (Book) o;
-        return Objects.equals(name, book.name) && Objects.equals(borrowedBy, book.borrowedBy);
+        return Objects.equals(name, book.name) && Objects.equals(person, book.person);
     }
 
     @Override
     public int hashCode() {
         int result = Objects.hashCode(name);
-        result = 31 * result + Objects.hashCode(borrowedBy);
+        result = 31 * result + Objects.hashCode(person);
         return result;
     }
 }

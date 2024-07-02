@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 public class TaskThird {
 
@@ -22,7 +24,19 @@ public class TaskThird {
         couriers.add(courier);
         couriers.add(secondCourier);
 
-        couriers.stream()
+        Optional<Double> optional = couriers.stream()
+                .filter(c -> c.getDeliveryList() != null)
+                .flatMap(c -> Stream.concat(c.getDeliveryList().stream(), c.getNotDeliveredList().stream()))
+                //.flatMap(c -> Stream.of(c.getDeliveryList(), c.getNotDeliveredList()))
+                //.flatMap(c -> c.stream())
+                .filter(delivery -> delivery != null)
+                .map(delivery -> delivery.getWeight())
+                .reduce((x, y) -> x + y);
+
+        Double result = optional.orElse(0.0);
+
+        System.out.println(result);
+
 
 
 

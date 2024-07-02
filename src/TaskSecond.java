@@ -29,6 +29,21 @@ public class TaskSecond {
 
         Person anton = new Person("Антон");
 
+        List<Person> people = new ArrayList<>();
+        people.add(artur);
+        people.add(vladimir);
+        people.add(alexander);
+        people.add(anton);
+
+        System.out.println(people);
+
+        List<Person> children = people.stream()
+                .map(person -> person.getChildren())
+                .flatMap()
+                .toList();
+
+        System.out.println(children);
+
 
 
 

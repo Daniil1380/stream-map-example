@@ -37,9 +37,11 @@ public class TaskSecond {
 
         System.out.println(people);
 
-        List<Person> children = people.stream()
-                .map(person -> person.getChildren())
-                .flatMap()
+        List<String> children = people.stream()
+                .map(person -> person.getChildren()) //взяли списки детей от каждого родителя
+                .filter(childrenList -> childrenList != null) //удалили те списки, в которых никого нет
+                .flatMap(childrenList -> childrenList.stream())
+                .map(child -> child.getName())//каждый список детей разложили на отдельных детей
                 .toList();
 
         System.out.println(children);
